@@ -259,3 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Algorithm/boj1759_another.cpp
+/Algorithm/boj1759_timeout.cpp
+*.cpp
