@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <cstring>
+#include <cstring> //memset
 using namespace std;
 
 int t, n; //n:편의점 수
@@ -59,16 +59,16 @@ int main() {
 		//1. 입력
 		cin >> n;
 
-		//2. 초기화
-		location.clear();
-		memset(visited, false, sizeof(visited));
-		isHappy = false;
-
 		for (int i = 0; i < n + 2; i++) {
 			int x, y;
 			cin >> x >> y;
 			location.push_back({ x, y });
 		}
+
+		//2. 초기화
+		location.clear();
+		memset(visited, false, sizeof(visited));
+		isHappy = false;
 
 		//3. 탐색
 		//dfs(0);
