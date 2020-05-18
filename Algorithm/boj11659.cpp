@@ -19,7 +19,7 @@ int main() {
 	}
 
 	//2. 구간합 구하기
-	int left = 0, right = 0, sum = 0;
+	int sum = 0;
 	v.push_back(0);
 	for (int i = 1; i <= N; i++) {
 		sum += arr[i];
