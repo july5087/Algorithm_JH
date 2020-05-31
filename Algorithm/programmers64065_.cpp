@@ -9,7 +9,7 @@ bool cmp(vector<int> a, vector<int> b) {
 	return a.size() < b.size();
 }
 vector<int> solution(string s) {
-	bool visited[100001];
+	bool visited[100001] = { false, };
 	vector<int> answer;
 	vector<vector<int> > numbers;
 
