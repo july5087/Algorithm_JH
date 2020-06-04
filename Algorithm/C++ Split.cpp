@@ -7,7 +7,7 @@
 getline(stringstream ss, string temp, char delim) => 구분자(delimiter)를 마지막에 지정
 */
 
-//getline 직접 사용 시
+//getline 직접 사용 시(구분자가 공백이 아닌 문자)
 #include <string>
 #include <sstream>
 #include <vector>
@@ -24,6 +24,27 @@ int main()
 		result.push_back(temp);
 	}
 	return 0;
+}
+
+//getline 직접 사용 시(구분자가 공백인 문자)
+#include <string>
+#include <vector>
+#include <sstream>
+using namespace std;
+
+int main() {
+	/* 직접 입력
+	string str; 
+	getline(cin, str); */
+	string str = "ABC DEF GHI";
+	stringstream ss(str);
+
+	vector<string> v;
+	string temp;
+
+	while (ss >> temp) {
+		v.push_back(temp);
+	}
 }
 
 //getline 이용해 Split 함수 구현 시
