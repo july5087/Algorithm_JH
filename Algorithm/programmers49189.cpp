@@ -8,37 +8,10 @@ using namespace std;
 
 const int MAX = 20001;
 vector<int> graph[MAX];
-int visited[MAX] = { 0, }; //길이
-int max_dist = 0, max_cnt = 0;
+int visited[MAX]; //길이
+int max_dist = -1;
 
-void bfs(int start, int n) {
-	queue<int> q;
-	q.push(start);
-	visited[start] = 1;
-
-	while (!q.empty()) {
-		int cur = q.front();
-		q.pop();
-
-		for (int i = 0; i<graph[cur].size(); i++) {
-			if (visited[graph[cur][i]] == 0) {
-				visited[graph[cur][i]] = visited[cur] + 1;
-				q.push(i);
-			}
-			//거리 최댓값 갱신
-			if (visited[graph[cur][i]] > max_dist) {
-				max_dist = visited[graph[cur][i]];
-			}
-		}
-	}
-
-	for (int i = 0; i < n; i++) {
-		//최대길이면 카운트 증가
-		if (max_dist == visited[i])
-			max_cnt++;
-	}
-}
-
+//1번 노드에서 가장 멀리 떨어진 노드의 갯수
 int solution(int n, vector<vector<int>> edge) {
 
 	for (int i = 0; i<edge.size(); i++) {
@@ -48,8 +21,36 @@ int solution(int n, vector<vector<int>> edge) {
 		graph[v].push_back(u);
 	}
 
-	memset(visited, 0, sizeof(visited));
-	bfs(1, n);
+	//BFS
+	queue<int> q;
+	int start = 1;
+	memset(visited, -1, sizeof(visited));
+	q.push(1);
+	visited[1] = 0;
+
+	while (!q.empty()) {
+		int cur = q.front();
+		q.pop();
+
+		for (int i = 0; i<graph[cur].size(); i++) {
+			int next = graph[cur][i];
+
+			if (visited[next] == -1) {
+				visited[next] = visited[cur] + 1;
+				q.push(next);
+
+				//길이 최댓값 갱신
+				if (visited[next] > max_dist)
+					max_dist = visited[next];
+			}
+		}
+	}
+	int max_cnt = 0;
+	for (int i = 1; i <= n; i++) {
+		//최대 길이와 같으면 카운트 증가
+		if (max_dist == visited[i])
+			max_cnt++;
+	}
 
 	return max_cnt;
 }
